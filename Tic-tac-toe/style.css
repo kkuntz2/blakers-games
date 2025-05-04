@@ -1,0 +1,94 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Make body take full viewport height */
+    background-color: #f0f0f0;
+    margin: 0; /* Remove default body margin */
+    -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.status {
+    margin-bottom: 20px;
+    font-size: 1.5em; /* Larger text */
+    font-weight: bold;
+    min-height: 1.5em; /* Prevent layout shift when text changes */
+    color: #555;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
+    grid-template-rows: repeat(3, 1fr); /* 3 equal rows */
+    width: 80vmin; /* Responsive width based on viewport */
+    height: 80vmin; /* Responsive height based on viewport */
+    max-width: 400px; /* Max size */
+    max-height: 400px; /* Max size */
+    background-color: #ddd;
+    gap: 5px; /* Spacing between cells */
+    border: 5px solid #ccc;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.cell {
+    background-color: #fff;
+    border: none; /* Remove individual borders if using gap */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5vmin; /* Responsive font size */
+    font-weight: bold;
+    cursor: pointer;
+    user-select: none; /* Prevent text selection */
+    color: #333; /* Default color before X or O */
+    border-radius: 5px; /* Slightly rounded corners */
+}
+
+/* Make font size larger on bigger cells */
+@media (min-width: 400px) {
+    .cell {
+        font-size: 3em;
+    }
+}
+
+
+.cell:hover {
+    background-color: #eee; /* Subtle hover effect */
+}
+
+/* Specific styles for X and O */
+.cell.X {
+    color: #ff6b6b; /* Reddish color for X */
+}
+
+.cell.O {
+    color: #4ecdc4; /* Teal color for O */
+}
+
+button {
+    padding: 15px 30px;
+    font-size: 1.2em;
+    cursor: pointer;
+    background-color: #4CAF50; /* Green */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Style for winning cells (optional) */
+.cell.winning {
+    background-color: #ffd700; /* Gold background for winning cells */
+}
