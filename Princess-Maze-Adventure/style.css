@@ -1,0 +1,169 @@
+body {
+    font-family: 'Comic Sans MS', cursive, sans-serif; /* Fun font */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    min-height: 100vh;
+    background-color: #ffe4f1; /* Light Pink */
+    margin: 0;
+    color: #4b0082; /* Indigo */
+    -webkit-tap-highlight-color: transparent; /* Remove tap highlight */
+    touch-action: none; /* Prevent scrolling while drawing */
+}
+
+h1 {
+    color: #ff69b4; /* Hot Pink */
+    text-shadow: 1px 1px #fff;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.status {
+    margin-bottom: 15px;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #8a2be2; /* Blue Violet */
+}
+
+#mazeContainer {
+    display: grid;
+    /* Grid columns/rows will be set by JS */
+    border: 5px solid #da70d6; /* Orchid */
+    background-color: #fff0f5; /* Lavender Blush */
+    touch-action: none; /* Important for preventing scrolling on maze */
+    position: relative; /* For potential absolute elements later if needed */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+    /* Adjust size for larger maze */
+    width: 90vmin; /* Use more viewport space */
+    height: 90vmin;
+    max-width: 600px; /* Increase max size */
+    max-height: 600px;
+}
+
+.cell {
+    /* Basic cell appearance */
+    background-color: transparent; /* Path color set below */
+    /* Make grid lines fainter or remove if cells are small */
+    border: 1px solid #eee; /* Lighter border */
+    box-sizing: border-box;
+    user-select: none; /* Prevent text selection */
+    position: relative; /* For pseudo-elements */
+    transition: background-color 0.1s linear; /* Smooth path drawing */
+}
+
+/* --- Maze Element Styles --- */
+.cell.wall {
+    background-color: #deb887; /* Burly Wood (like castle bricks) */
+    /* Simplify pattern for potentially smaller cells */
+    background-image: linear-gradient(45deg, #cd853f 40%, transparent 40%),
+                      linear-gradient(-45deg, #cd853f 40%, transparent 40%);
+    background-size: 6px 6px; /* Smaller pattern */
+    border: 1px solid #a0522d; /* Sienna */
+}
+
+.cell.path {
+    background-color: #fffacd; /* Lemon Chiffon (clear path) */
+}
+
+/* Adjust icon sizes slightly if needed, or use smaller icons */
+.cell.start {
+    background-color: #90ee90; /* Light Green */
+    font-size: 1.5em; /* Slightly smaller relative to cell size */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/* Add princess icon */
+.cell.start::after {
+    content: '👸';
+}
+
+
+.cell.end {
+    background-color: #add8e6; /* Light Blue */
+    font-size: 1.5em; /* Slightly smaller relative to cell size */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/* Add castle icon */
+.cell.end::after {
+    content: '🏰';
+}
+
+
+/* --- Player Path Styles --- */
+.cell.visited {
+    background-color: #ffb6c1; /* Light Pink */
+    /* Sparkle effect */
+    position: relative;
+    overflow: hidden; /* Keep sparkles contained */
+}
+
+.cell.visited::before {
+    content: '✨';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.6); /* Adjust size */
+    opacity: 0.8;
+    animation: sparkle 1.5s infinite ease-in-out;
+}
+
+@keyframes sparkle {
+    0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(0.5); }
+    50% { opacity: 1; transform: translate(-50%, -50%) scale(0.7); }
+}
+
+
+/* --- Button Style --- */
+#resetButton {
+    padding: 12px 25px;
+    font-size: 1.1em;
+    font-family: inherit; /* Use body font */
+    cursor: pointer;
+    background-color: #ff69b4; /* Hot Pink */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+    text-shadow: 1px 1px #8a2be2;
+}
+
+#resetButton:hover {
+    background-color: #ff1493; /* Deep Pink */
+}
+
+/* --- Win Message --- */
+.win-message {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #98fb98; /* Pale Green */
+    color: #228b22; /* Forest Green */
+    border: 3px dashed #3cb371; /* Medium Sea Green */
+    border-radius: 10px;
+    font-size: 1.4em;
+    text-align: center;
+    font-weight: bold;
+    animation: bounceIn 0.6s ease-out;
+}
+
+/* --- Utility --- */
+.hidden {
+    display: none !important;
+}
+
+/* Simple animation for win message */
+@keyframes bounceIn {
+    0% { transform: scale(0.3); opacity: 0; }
+    50% { transform: scale(1.05); opacity: 1; }
+    70% { transform: scale(0.9); }
+    100% { transform: scale(1); }
+}
+
+/* Adjust icon sizes based on container size */
+@media (max-width: 400px) {
+    .cell.start, .cell.end { font-size: 1.0em; } /* Make smaller on small screens */
+}

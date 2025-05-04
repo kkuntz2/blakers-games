@@ -1,0 +1,190 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Adjust justify-content if needed when selection shows */
+    padding-top: 20px; /* Add some padding at the top */
+    min-height: 100vh;
+    background-color: #f0f8ff; /* Lighter blue background */
+    margin: 0;
+    -webkit-tap-highlight-color: transparent;
+}
+
+h1 {
+    color: #4682b4; /* Steel Blue */
+    margin-bottom: 20px;
+}
+
+/* --- Character Selection --- */
+.selection-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.selection-area h2 {
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.character-options {
+    display: flex;
+    gap: 20px; /* Space between choices */
+}
+
+.character-choice {
+    background-color: #fff;
+    border: 3px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1em;
+    font-weight: bold;
+    color: #333;
+}
+
+.character-choice:hover {
+    transform: scale(1.05);
+    border-color: #4CAF50;
+}
+
+.choice-img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover; /* Or contain, depending on image aspect ratio */
+    margin-bottom: 5px;
+    border-radius: 5px; /* Optional rounded corners for choice preview */
+}
+
+
+/* --- Game Area --- */
+.status {
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    font-weight: bold;
+    min-height: 1.5em;
+    color: #dc143c; /* Crimson */
+    text-align: center;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    width: 75vmin; /* Slightly smaller board */
+    height: 75vmin;
+    max-width: 350px;
+    max-height: 350px;
+    background-color: #b0c4de; /* Light Steel Blue */
+    gap: 6px;
+    border: 5px solid #4682b4;
+    border-radius: 10px;
+    margin: 0 auto 20px auto; /* Center the board */
+}
+
+.cell {
+    background-color: #fff;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    user-select: none;
+    border-radius: 5px;
+    position: relative; /* Needed for potential absolute positioning inside */
+    overflow: hidden; /* Prevent image overflow if needed */
+}
+
+.cell:hover {
+    background-color: #f0f0f0;
+}
+
+/* Style for the image placed inside a cell */
+.cell img.player-img {
+    display: block; /* Remove extra space below image */
+    width: 90%;   /* Slightly smaller than cell */
+    height: 90%;  /* Slightly smaller than cell */
+    object-fit: contain; /* Ensure whole image is visible */
+    animation: pop-in 0.3s ease-out forwards; /* Add animation */
+}
+
+/* Pop-in animation */
+@keyframes pop-in {
+    0% {
+        transform: scale(0.1);
+        opacity: 0;
+    }
+    80% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+
+/* --- Winning Cells (Optional Highlight) --- */
+.cell.winning {
+    background-color: #ffd700; /* Gold background */
+}
+/* Ensure winning highlight doesn't cover image too much */
+.cell.winning img.player-img {
+   opacity: 0.8;
+}
+
+
+/* --- Restart Button --- */
+button#restartButton {
+    display: block; /* Make button block level */
+    margin: 20px auto 0 auto; /* Center button */
+    padding: 15px 30px;
+    font-size: 1.2em;
+    cursor: pointer;
+    background-color: #ff6347; /* Tomato Red */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+button#restartButton:hover {
+    background-color: #e55337;
+}
+
+/* --- Winning Animation Overlay --- */
+.overlay {
+    position: fixed; /* Cover the whole screen */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000; /* Ensure it's on top */
+}
+
+.overlay img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    border: 5px solid white;
+    border-radius: 10px;
+    background-color: #333; /* Background if gif/webp has transparency */
+}
+
+
+/* --- Utility Class --- */
+.hidden {
+    display: none !important; /* Use important to override other display properties */
+}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Tic-Tac-Terd!</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>Tic-Tac-Terd!</h1>
+
+    <!-- Character Selection Area -->
+    <div id="characterSelection" class="selection-area">
+        <h2>Choose Your Player!</h2>
+        <div class="character-options">
+            <button class="character-choice" data-character="donald">
+                <img src="img/donald.png" alt="Donald" class="choice-img">
+                <span>Donald</span>
+            </button>
+            <button class="character-choice" data-character="billy">
+                <img src="img/billy.png" alt="Billy" class="choice-img">
+                <span>Billy</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Game Area (Initially Hidden) -->
+    <div id="gameArea" class="hidden">
+        <div id="statusArea" class="status"></div>
+
+        <div id="gameBoard" class="board">
+            <!-- Cells 0-8 -->
+            <div class="cell" data-cell-index="0"></div>
+            <div class="cell" data-cell-index="1"></div>
+            <div class="cell" data-cell-index="2"></div>
+            <div class="cell" data-cell-index="3"></div>
+            <div class="cell" data-cell-index="4"></div>
+            <div class="cell" data-cell-index="5"></div>
+            <div class="cell" data-cell-index="6"></div>
+            <div class="cell" data-cell-index="7"></div>
+            <div class="cell" data-cell-index="8"></div>
+        </div>
+
+        <button id="restartButton">Play Again?</button>
+    </div>
+
+    <!-- Winning Animation Overlay (Initially Hidden) -->
+    <div id="winOverlay" class="overlay hidden">
+        <img id="winAnimation" src="" alt="Winner!" />
+    </div>
+
+
+    <script src="script.js"></script>
+</body>
+</html>
