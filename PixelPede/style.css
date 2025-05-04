@@ -1,0 +1,109 @@
+body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Center vertically */
+    min-height: 100vh;
+    margin: 0;
+    background-color: #111; /* Default dark background */
+    color: #eee;
+    overflow: hidden; /* Prevent scrollbars */
+    transition: background-color 0.5s ease; /* Smooth color transition */
+}
+
+#gameContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 3px solid #ccc;
+    padding: 10px;
+    background-color: rgba(40, 40, 40, 0.8); /* Dark semi-transparent */
+    border-radius: 8px;
+    position: relative; /* For message overlay positioning */
+}
+
+h1 {
+    color: #0f0; /* Greenish title */
+    margin-bottom: 10px;
+    font-size: 1.8em;
+    text-shadow: 1px 1px #333;
+}
+
+#infoArea {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 600px; /* Match canvas width */
+    margin-bottom: 10px;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+#infoArea span {
+    padding: 0 10px;
+}
+
+#gameCanvas {
+    border: 2px solid #555;
+    background-color: #000; /* Black game area */
+    display: block; /* Remove extra space below canvas */
+    touch-action: none; /* Critical for touch controls */
+    max-width: 100%; /* Ensure it fits on smaller screens */
+}
+
+#messageArea {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.75); /* Dark overlay */
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 1.5em;
+    z-index: 10; /* Make sure it's on top */
+    border-radius: 8px; /* Match container */
+}
+
+#messageArea p {
+    margin-bottom: 20px;
+}
+
+#messageArea button {
+    padding: 15px 30px;
+    font-size: 1em;
+    cursor: pointer;
+    background-color: #0f0;
+    color: #111;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* --- Level Background Colors --- */
+/* Applied to the body */
+.level-1 { background-color: #1a1a2e; }
+.level-2 { background-color: #16213e; }
+.level-3 { background-color: #0f3460; }
+.level-4 { background-color: #53354a; }
+.level-5 { background-color: #903749; }
+/* Add more as needed */
+.level-default { background-color: #2c3e50; } /* Fallback for higher levels */
+
+/* --- Obstacle (Mushroom) Style --- */
+/* We'll draw them with canvas, but this class is for potential future use or reference */
+.mushroom {
+    /* Styles defined in canvas drawing */
+    /* Example placeholder */
+    /* background-color: #ea907a; */
+    /* border-radius: 50% 50% 0 0 / 100% 100% 0 0 ; */
+}
